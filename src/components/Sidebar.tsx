@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import IconClose from "./icons/IconClose";
 import IconAddOutline from "./icons/IconAddOutline";
-import SidebarButton from "./icons/SidebarButton";
+import SidebarButton from "./SidebarButton";
 import IconTrash from "./icons/IconTrash";
 
 type Props = {
@@ -14,7 +14,7 @@ type Props = {
 
 const Sidebar = ({ children, open, onNewChat, onClear, onClose }: Props) => {
     return (
-        <section className={`fixed left-0 top-0 bottom-0 text-white ${open ? 'w-screen bg-blue-900/10' : 'w-0'} md:w-80 md:static`}>
+        <section className={`fixed left-0 top-0 bottom-0 text-white ${open ? 'w-screen bg-blue-900/20' : 'w-0'} md:w-80 md:static`}>
 
             <div className={`transition-all duration-200 flex h-screen ${open ? 'ml-0' : '-ml-96'} md:ml-0`}>
 
