@@ -5,10 +5,12 @@ import Header from "@/components/Header";
 import Sidebar from "@/components/Sidebar";
 import { useState } from "react";
 import { Chat } from "../types/Chat";
+import Footer from "@/components/Chat/Footer";
 
 
 const Page = () => {
   const [sidebarOpened, setSidebarOpened] = useState(false);
+  const [AILoading, setAILoading] = useState(false);
   const [chatActive, setChatActive] = useState<Chat>({
     id: '123',
     title: 'Wethever',
@@ -37,6 +39,10 @@ const Page = () => {
 
   }
 
+  const handleSendMessage = () => {
+
+  }
+
   return (
     <main className="flex min-h-screen bg-ia-blue">
       <Sidebar
@@ -58,6 +64,11 @@ const Page = () => {
 
         <ChatArea
           chat={chatActive}
+        />
+
+        <Footer
+          disabled={AILoading}
+          onSendMessage={handleSendMessage}
         />
 
       </section>
