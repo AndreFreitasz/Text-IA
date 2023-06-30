@@ -3,44 +3,45 @@
 import ChatArea from "@/components/Chat/ChatArea";
 import Header from "@/components/Header";
 import Sidebar from "@/components/Sidebar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Chat } from "../types/Chat";
 import Footer from "@/components/Chat/Footer";
 
 
 const Page = () => {
   const [sidebarOpened, setSidebarOpened] = useState(false);
+  const [chatList, setChatList] = useState<Chat[]>([]);
+  const [chatActiveId, setChatActiveId] = useState<string>('');
+  const [chatActive, setChatActive] = useState<Chat>();
   const [AILoading, setAILoading] = useState(false);
-  const [chatActive, setChatActive] = useState<Chat>({
-    id: '123',
-    title: 'Wethever',
-    messages: [
-      {
-        id: '99',
-        author: 'me',
-        body: 'Tudo bem?',
-      },
-      {
-        id: '100',
-        author: 'ai',
-        body: 'Tudo sim, e você?',
-      }
-    ]
-  });
+
+  useEffect(() => {
+    setChatActive(chatList.find(item => item.id === chatActiveId));
+  }, [chatActiveId, chatList]);
 
   const openSidebar = () => setSidebarOpened(true);
   const closeSidebar = () => setSidebarOpened(false);
 
   const handleClearConversation = () => {
+    if(AILoading) return;
 
+    setChatActiveId('');
+    setChatList([]);
   }
 
   const handleNewChat = () => {
+    if(AILoading) return
 
+    setChatActiveId('');
+    closeSidebar();
   }
 
-  const handleSendMessage = () => {
-
+  const handleSendMessage = (message: string) => {
+    if(!chatActiveId) {
+      //Creating new chat
+    } else {
+      //Updating existing chat
+    }
   }
 
   return (
