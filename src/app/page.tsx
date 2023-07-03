@@ -6,6 +6,7 @@ import Sidebar from "@/components/Sidebar";
 import { useEffect, useState } from "react";
 import { Chat } from "../types/Chat";
 import Footer from "@/components/Chat/Footer";
+import { v4 as uuidv4 } from 'uuid';
 
 
 const Page = () => {
@@ -39,9 +40,35 @@ const Page = () => {
   const handleSendMessage = (message: string) => {
     if(!chatActiveId) {
       //Creating new chat
+        let newChatId = uuidv4();
+        setChatList([{
+          id: newChatId,
+          title: message,
+          messages: [
+            {
+              id: uuidv4(), 
+              author: 'me',
+              body: message
+            }
+          ]
+        }, ...chatList]);
+
+        setChatActiveId(newChatId);
+
     } else {
       //Updating existing chat
+      let chatListClone = [...chatList];
+      let ChatIndex = chatListClone.findIndex(item => item.id === chatActiveId);
+      chatListClone[ChatIndex].messages.push({
+        id: uuidv4(),
+        author: 'me',
+        body: message
+      });
+
+      setChatList(chatListClone);
     }
+
+    setAILoading(true);
   }
 
   return (
@@ -65,6 +92,7 @@ const Page = () => {
 
         <ChatArea
           chat={chatActive}
+          loading={AILoading}
         />
 
         <Footer

@@ -11,7 +11,7 @@ const ChatMessageItem = ({ item }: Props) => {
         <div className={`py-5 ${item.author === 'ai' && 'bg-gray-600/50'}`}>
             <div className="max-w-4xl m-auto flex">
 
-                <div className={`w-12 h-12 flex justify-center items-center mx-4 md:ml-0 rounded-xl ${item.author === 'ai' ? 'bg-green-900' : 'bg-blue-900' }`}>
+                <div className={`w-12 h-12 flex justify-center items-center mx-4 md:ml-0 rounded-xl ${item.author === 'ai' ? 'bg-green-900' : 'bg-gray-900' }`}>
                     {item.author === 'me' && <IconUser width={24} height={24}/>}
                     {item.author === 'ai' && <IconRobot width={24} height={24}/>}
                 </div>

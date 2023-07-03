@@ -16,7 +16,7 @@ const Footer = ({ disabled, onSendMessage }: Props) => {
                 <div className="flex flex-row justify-center pt-3 text-xs text-gray-300">
                     <p>Created by</p>
                     <a
-                        className="ml-1 border-b"
+                        className="ml-1 border-b hover:opacity-50"
                         href="https://www.linkedin.com/in/andré-freitas-462940200/"
                         target="_blank"
                     >
