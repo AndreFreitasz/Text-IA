@@ -8,6 +8,7 @@ import { Chat } from "../types/Chat";
 import Footer from "@/components/Chat/Footer";
 import { v4 as uuidv4 } from 'uuid';
 import SidebarChatButton from "@/components/Sidebar/SidebarChatButton";
+import { openai } from "@/utils/openai";
 
 
 const Page = () => {
@@ -116,6 +117,12 @@ const Page = () => {
     }
   }
 
+  const handleTestOpenAI = async () => {
+    await openai.generate([
+      {role: 'user', content: 'qual capital do brasil'}
+    ]);
+  }
+
   return (
     <main className="flex min-h-screen bg-ia-blue">
       <Sidebar
@@ -148,6 +155,8 @@ const Page = () => {
           chat={chatActive}
           loading={AILoading}
         />
+
+          <button onClick={handleTestOpenAI}>Test OpenAI</button>
 
         <Footer
           disabled={AILoading}
