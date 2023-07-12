@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import IconClose from "./icons/IconClose";
 import IconAddOutline from "./icons/IconAddOutline";
-import SidebarButton from "./SidebarButton";
+import SidebarButton from "./Sidebar/SidebarButton";
 import IconTrash from "./icons/IconTrash";
 
 type Props = {
