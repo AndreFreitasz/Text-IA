@@ -28,20 +28,24 @@ const Page = () => {
 
   const openSidebar = () => setSidebarOpened(true);
   const closeSidebar = () => setSidebarOpened(false);
-  const getAIResponse = () => {
-    setTimeout(() => {
+
+  const getAIResponse = async () => {
       let chatListClone = [...chatList];
       let chatIndex = chatListClone.findIndex(item => item.id === chatActiveId);
       if (chatIndex > -1) {
-        chatListClone[chatIndex].messages.push({
-          id: uuidv4(),
-          author: 'ai',
-          body: 'Essa é a minha resposta :)'
-        })
+        const translated = openai.translateMessages(chatListClone[chatIndex].messages);
+        const response = await openai.generate(translated);
+
+        if (response) {
+          chatListClone[chatIndex].messages.push({
+            id: uuidv4(),
+            author: 'ai',
+            body: response
+          });
+        } 
       }
       setChatList(chatListClone);
       setAILoading(false);
-    }, 2000);
   }
 
   const handleClearConversation = () => {
@@ -117,12 +121,6 @@ const Page = () => {
     }
   }
 
-  const handleTestOpenAI = async () => {
-    await openai.generate([
-      {role: 'user', content: 'qual capital do brasil'}
-    ]);
-  }
-
   return (
     <main className="flex min-h-screen bg-ia-blue">
       <Sidebar
@@ -155,8 +153,6 @@ const Page = () => {
           chat={chatActive}
           loading={AILoading}
         />
-
-          <button onClick={handleTestOpenAI}>Test OpenAI</button>
 
         <Footer
           disabled={AILoading}
