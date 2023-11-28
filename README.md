@@ -12,6 +12,15 @@ yarn dev
 pnpm dev
 ```
 
+If it doesn't work, try running:
+```bash
+npm install next
+```
+And then type:
+```bash
+npm run dev
+```
+
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
